@@ -24,3 +24,49 @@ class Solution {
         return ans.toString();
     }
 }
+
+//CPP -->
+// class Solution {
+// public:
+//     string sortVowels(string s) {
+//         size_t n = s.size();
+//         vector<int> upper_vowels(26, 0), lower_vowels(26, 0);
+//         int upperC = 0;
+
+//         for (const char& ch : s) {
+//             if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+//                 lower_vowels[ch - 'a']++;
+//             } else if (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' ||
+//                        ch == 'U') {
+//                 upper_vowels[ch - 'A']++;
+//                 upperC++;
+//             }
+//         }
+
+//         for (int i = 0; i < n; i++) {
+//             char ch = s[i];
+//             if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+//                 ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+//                 if (upperC != 0) {
+//                     for (int j = 0; j < 26; j++) {
+//                         if (upper_vowels[j] != 0) {
+//                             s[i] = (char)(j + 65);
+//                             upperC--;
+//                             upper_vowels[j]--;
+//                             break;
+//                         }
+//                     }
+//                 } else {
+//                     for (int j = 0; j < 26; j++) {
+//                         if (lower_vowels[j] != 0) {
+//                             s[i] = (char)(j + 97);
+//                             lower_vowels[j]--;
+//                             break;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         return s;
+//     }
+// };
