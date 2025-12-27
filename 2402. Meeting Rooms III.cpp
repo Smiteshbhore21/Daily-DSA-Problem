@@ -43,3 +43,47 @@ public:
         return idx;
     }
 };
+
+// (O(m * n) + O(n * log(n)) -->
+// class Solution {
+// public:
+//     int mostBooked(int n, vector<vector<int>>& meetings) {
+//         sort(meetings.begin(), meetings.end());
+//         vector<int> freqRoom(n, 0);
+//         vector<long long> availableTime(n, 0);
+//         int m = meetings.size();
+//         for (vector<int>& meet : meetings) {
+//             int start = meet[0];
+//             int end = meet[1];
+//             int duration = end - start;
+//             bool found = false;
+//             long long earlyEndRoomTime = LLONG_MAX;
+//             int earlyEndRoom = 0;
+//             for (int room = 0; room < n; room++) {
+//                 if (availableTime[room] <= start) {
+//                     availableTime[room] = end;
+//                     freqRoom[room]++;
+//                     found = true;
+//                     break;
+//                 }
+//                 if (earlyEndRoomTime > availableTime[room]) {
+//                     earlyEndRoomTime = availableTime[room];
+//                     earlyEndRoom = room;
+//                 }
+//             }
+//             if (!found) {
+//                 availableTime[earlyEndRoom] += duration;
+//                 freqRoom[earlyEndRoom]++;
+//             }
+//         }
+//         int resultRoom = -1;
+//         int maxUse = 0;
+//         for(int room = 0; room < n; room++){
+//             if(freqRoom[room] > maxUse){
+//                 maxUse = freqRoom[room];
+//                 resultRoom = room;
+//             }
+//         }
+//         return resultRoom;
+//     }
+// };
