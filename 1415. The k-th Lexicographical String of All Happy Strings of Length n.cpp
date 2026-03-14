@@ -1,3 +1,58 @@
+// O(N) -->
+class Solution {
+public:
+    string getHappyString(int n, int k) {
+        int total = 3 * (1 << (n - 1));
+        if (k > total)
+            return "";
+
+        string ans = "";
+        char prev = '#';
+
+        for (int i = 0; i < n; i++) {
+            for (char ch : {'a', 'b', 'c'}) {
+
+                if (ch == prev)
+                    continue;
+
+                int remaining = n - i - 1;
+                int count = 1 << remaining;
+
+                if (k > count) {
+                    k -= count;
+                } else {
+                    ans += ch;
+                    prev = ch;
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+// O(2^N) -->
+// class Solution {
+// public:
+//     vector<string> happyStrings;
+//     string getHappyString(int n, int k) {
+//         solve(n, "");
+//         return happyStrings.size() >= k ? happyStrings[k - 1] : "";
+//     }
+//     void solve(int n, string currStr) {
+//         if (currStr.length() == n) {
+//             happyStrings.push_back(currStr);
+//             return;
+//         }
+//         for (char ch : {'a', 'b', 'c'}) {
+//             if (!currStr.empty() && currStr.back() == ch)
+//                 continue;
+//             solve(n, currStr + ch);
+//         }
+//     }
+// };
+
+// O(2^N) -->
 class Solution {
 public:
     string ans = "";
