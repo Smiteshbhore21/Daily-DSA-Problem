@@ -1,0 +1,62 @@
+// O(M * Nlog(n)) --> 
+class Solution {
+public:
+    int largestSubmatrix(vector<vector<int>>& mat) {
+        int m = mat.size(), n = mat[0].size();
+        int maxArea = 0;
+
+        vector<pair<int, int>> prevHeights;
+
+        for (int row = 0; row < m; row++) {
+
+            vector<pair<int, int>> currHeights;
+            vector<bool> visited(n, false);
+            for (auto [height, col] : prevHeights) {
+
+                if (mat[row][col] == 1) {
+                    currHeights.push_back({height + 1, col});
+                    visited[col] = 1;
+                }
+            }
+
+            for (int col = 0; col < n; col++) {
+                if (visited[col] == false && mat[row][col] == 1) {
+                    currHeights.push_back({1, col});
+                }
+            }
+
+            for (int i = 0; i < currHeights.size(); i++) {
+                int H = currHeights[i].first;
+                int B = i + 1;
+
+                maxArea = max(maxArea, H * B);
+            }
+
+            prevHeights = currHeights;
+        }
+        return maxArea;
+    }
+};
+
+// class Solution {
+// public:
+//     int largestSubmatrix(vector<vector<int>>& mat) {
+//         int m = mat.size(), n = mat[0].size();
+//         int maxArea = 0;
+//         for (int row = 0; row < m; row++) {
+//             for (int col = 0; col < n; col++) {
+//                 if (mat[row][col] == 1 && row > 0) {
+//                     mat[row][col] += mat[row - 1][col];
+//                 }
+//             }
+//             vector<int> heights = mat[row];
+//             sort(begin(heights), end(heights), greater<int>());
+//             for (int i = 0; i < n; i++) {
+//                 int base = (i + 1);
+//                 int height = heights[i];
+//                 maxArea = max(maxArea, base * height);
+//             }
+//         }
+//         return maxArea;
+//     }
+// };
