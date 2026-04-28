@@ -20,3 +20,29 @@ public:
         return ans;
     }
 };
+
+
+// class Solution {
+// public:
+//     int minOperations(vector<vector<int>>& grid, int x) {
+//         int m = grid.size();
+//         int n = grid[0].size();
+//         vector<int> flatten;
+//         for (int i = 0; i < m; i++) {
+//             for (int j = 0; j < n; j++) {
+//                 flatten.push_back(grid[i][j]);
+//             }
+//         }
+//         sort(flatten.begin(), flatten.end());
+//         int midEle = flatten[(m * n) / 2];
+
+//         int result = 0;
+//         for (int i = 0; i < (m * n); i++) {
+//             if (flatten[i] % x != midEle % x)
+//                 return -1;
+
+//             result += abs(midEle - flatten[i]) / x;
+//         }
+//         return result;
+//     }
+// };
