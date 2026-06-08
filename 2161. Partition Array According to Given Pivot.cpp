@@ -44,4 +44,32 @@ public:
         // }
         // return nums;
     }
+
+// Approuch 2 ->
+//         vector<int> pivotArray(vector<int>& nums, int pivot) {
+//         int n = nums.size();
+
+//         vector<int> result(n, 0);
+//         int idx = 0;
+//         int jdx = n - 1;
+//         int i = 0;
+//         int j = n - 1;
+//         while (i < n && j >= 0) {
+//             if (nums[i] < pivot) {
+//                 result[idx++] = nums[i];
+//             }
+
+//             if (nums[j] > pivot) {
+//                 result[jdx--] = nums[j];
+//             }
+
+//             i++, j--;
+//         }
+
+//         while (idx <= jdx) {
+//             result[idx++] = pivot;
+//         }
+
+//         return result;
+//     }
 };
