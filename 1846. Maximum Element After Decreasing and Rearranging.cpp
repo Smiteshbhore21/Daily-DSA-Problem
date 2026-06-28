@@ -1,0 +1,35 @@
+class Solution {
+    public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
+        int n = arr.length;
+        int[] count = new int[n + 1];
+
+        for (int num : arr) {
+            count[Math.min(num, n)]++;
+        }
+
+        int ans = 1;
+
+        for (int i = 2; i <= n; i++) {
+            ans = Math.min(ans + count[i], i);
+        }
+
+        return ans;
+    }
+}
+
+// class Solution {
+//     public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
+//         Arrays.sort(arr);
+//         int n = arr.length;
+//         if (arr[0] != 1)
+//             arr[0] = 1;
+//         int result = 1;
+//         for (int i = 1; i < n; i++) {
+//             if (Math.abs(arr[i] - arr[i - 1]) > 1) {
+//                 arr[i] = arr[i - 1] + 1;
+//             }
+//             result = Math.max(result, arr[i]);
+//         }
+//         return result;
+//     }
+// }
